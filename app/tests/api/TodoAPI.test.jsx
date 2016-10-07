@@ -14,14 +14,6 @@ describe('TodoAPI', function(){
     expect(TodoAPI).toExist();
   });
 
-  /*
-  describe('getTodos', function(){
-    it('should return empty array for bad localStorage data', function(){
-
-    })
-  });
-  */
-
   describe('filterTodos', function(){
     var todos = [
       {

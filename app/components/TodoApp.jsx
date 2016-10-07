@@ -2,6 +2,7 @@ var React = require('react');
 
 //node lib
 var uuid = require('node-uuid');
+var moment = require('moment');
 
 var TodoSearch = require('TodoSearch');
 var TodoList = require('TodoList');
@@ -24,7 +25,9 @@ var TodoApp = React.createClass({
       todos: [...this.state.todos, {
         text: strTodo,
         id: uuid(),
-        completed: false
+        completed: false,
+        createdAt: moment().unix(),
+        completedAt: null
       }]
     });
   },
@@ -36,11 +39,13 @@ var TodoApp = React.createClass({
   },
   handleToggle: function(id){
     var updatedTodos = this.state.todos.map(function(todo){
-      if(todo.id === id){
+      if(todo.id === id) {
         todo.completed = !todo.completed;
+        todo.completedAt = (todo.completed === true) ? Math.floor(Date.now() / 1000) : null;
       }
       return todo;
     });
+
     this.setState({
       todos: updatedTodos
     });
@@ -48,7 +53,7 @@ var TodoApp = React.createClass({
   render: function(){
     var {todos, showCompleted, searchText} = this.state;
     var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
-  
+
     return (
       <div>
         <h1>TodoApp</h1>
