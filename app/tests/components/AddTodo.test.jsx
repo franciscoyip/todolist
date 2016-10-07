@@ -37,17 +37,4 @@ describe('AddTodo', function(){
     expect(spy).toNotHaveBeenCalled();
   });
 
-  /*
-  describe('formatSeconds', function(){
-
-
-    it('should format seconds when min/sec are less than 10', function(){
-      var clock = TestUtils.renderIntoDocument(<Clock/>);
-      var seconds = 61;
-      var expected = '01:01';
-      var actual = clock.formatSeconds(seconds);
-      expect(actual).toBe(expected);
-    });
-  });
-  */
 });

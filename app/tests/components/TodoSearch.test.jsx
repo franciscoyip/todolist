@@ -15,23 +15,28 @@ describe('Search', function(){
     expect(TodoSearch).toExist();
   });
 
-  /*
-  describe('formatSeconds', function(){
-    it('should format seconds', function(){
-      var clock = TestUtils.renderIntoDocument(<Clock/>);
-      var seconds = 615;
-      var expected = '10:15';
-      var actual = clock.formatSeconds(seconds);
-      expect(actual).toBe(expected);
-    });
-
-    it('should format seconds when min/sec are less than 10', function(){
-      var clock = TestUtils.renderIntoDocument(<Clock/>);
-      var seconds = 61;
-      var expected = '01:01';
-      var actual = clock.formatSeconds(seconds);
-      expect(actual).toBe(expected);
-    });
+  it('should call onSearch on change text change', function(){
+    var searchText = 'walk'
+    var spy = expect.createSpy();
+    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    todoSearch.refs.searchText.value = searchText;
+    TestUtils.Simulate.change(todoSearch.refs.searchText);
+    expect(spy).toHaveBeenCalledWith(false, searchText);
   });
-  */
+
+  it('should call onSearch with correct checked value', function(){
+    var spy = expect.createSpy();
+    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    TestUtils.Simulate.change(todoSearch.refs.showCompleted);
+    expect(spy).toHaveBeenCalledWith(false, '');
+  });
+
+  it('should call onSearch with checkbox is checked', function(){
+    var spy = expect.createSpy();
+    var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
+    todoSearch.refs.showCompleted.checked = true;
+    TestUtils.Simulate.change(todoSearch.refs.showCompleted);
+    expect(spy).toHaveBeenCalledWith(true, '');
+  });
+
 });
