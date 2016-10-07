@@ -1,14 +1,19 @@
 var React = require('react');
 
 var AddTodo = React.createClass({
+  propTypes: {
+    onAddTodo: React.PropTypes.func.isRequired,
+  },
   onSubmit: function(e){
     e.preventDefault();
     var field = this.refs.inputTodo;
     var strTodo = field.value;
     if(strTodo){
       //call the prop function
-      //this.props.xxxxx(strTodo)
+      this.props.onAddTodo(strTodo)
       field.value = '';
+    }else{
+      field.focus();
     }
   },
   render: function(){
