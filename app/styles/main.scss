@@ -1,0 +1,11 @@
+
+// foundation
+@import "base/foundation-settings";
+@import "foundation";
+@include foundation-everything;
+
+#app {
+  h1 {
+    font-size: 1.5em;
+  }
+}
