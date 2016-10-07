@@ -23,3 +23,4 @@ Thumbs.db
 
 # dev dependency modules #
 node_modules/
+data/
