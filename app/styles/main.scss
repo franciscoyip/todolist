@@ -1,11 +1,12 @@
+//base
+@import "base/variables";
 
 // foundation
 @import "base/foundation-settings";
 @import "foundation";
 @include foundation-everything;
 
-#app {
-  h1 {
-    font-size: 1.5em;
-  }
-}
+// Components
+@import "components/pagefont";
+@import "components/container";
+@import "components/todo";
