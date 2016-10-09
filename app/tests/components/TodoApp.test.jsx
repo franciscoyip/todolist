@@ -1,10 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+var {Provider} = require('react-redux');
 var expect = require('expect');
 
 var $ = require('jQuery');
 
+var configureStore = require('configureStore');
+//var TodoList = require('TodoList');
+import TodoList from 'TodoList';
 var TestUtils = require('react-addons-test-utils');
 
 //actual Component
@@ -19,6 +22,20 @@ describe('TodoApp', function(){
     expect(TodoApp).toExist();
   });
 
+  it('should render TodoList', ()=>{
+    var store = configureStore.configure();
+    var provider = TestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <TodoApp/>
+      </Provider>
+    );
+
+    var todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
+    var todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
+    expect(todoList.length).toEqual(1);
+  });
+
+  /*
   it('should add todo to the todos state on handleAddTodo', function(){
     var strTask = 'walk'
     var spy = expect.createSpy();
@@ -33,7 +50,9 @@ describe('TodoApp', function(){
     expect(todoApp.state.todos.length).toBe(1);
 
   });
+  */
 
+  /*
   it('should toggle completed value when handleToggle called', function(){
     var todoData = {
       id: 11,
@@ -53,7 +72,9 @@ describe('TodoApp', function(){
     expect(todoApp.state.todos[0].completedAt).toBeA('number');
     expect(todoApp.state.todos.length).toBe(1);
   });
+  */
 
+  /*
   it('should toggle todo from completed to incompleted', function(){
     var todoData = {
       id: 11,
@@ -74,4 +95,5 @@ describe('TodoApp', function(){
     expect(todoApp.state.todos[0].completedAt).toNotExist();
     expect(todoApp.state.todos.length).toBe(1);
   });
+  */
 });
