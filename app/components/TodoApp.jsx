@@ -4,12 +4,13 @@ var React = require('react');
 var uuid = require('node-uuid');
 var moment = require('moment');
 
-var TodoSearch = require('TodoSearch');
+import TodoSearch from 'TodoSearch';
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
-var TodoAPI = require('TodoAPI');
+//var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
+  /*
   getInitialState: function(){
     return {
       showCompleted: false,
@@ -20,6 +21,8 @@ var TodoApp = React.createClass({
   componentDidUpdate: function(){
     TodoAPI.setTodos(this.state.todos);
   },
+  */
+  /*
   handleAddTodo: function(strTodo){
     this.setState({
       todos: [...this.state.todos, {
@@ -37,6 +40,7 @@ var TodoApp = React.createClass({
       searchText: text.toLowerCase()
     });
   },
+  */
   /*
   handleToggle: function(id){
     var updatedTodos = this.state.todos.map(function(todo){
@@ -53,8 +57,8 @@ var TodoApp = React.createClass({
   },
   */
   render: function(){
-    var {todos, showCompleted, searchText} = this.state;
-    var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+    //var {todos, showCompleted, searchText} = this.state;
+    //var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
     return (
       <div>
@@ -62,10 +66,9 @@ var TodoApp = React.createClass({
         <div className="row">
           <div className="column small-centered small-11 medium-7 large-6">
             <div className="container">
-              <TodoSearch onSearch={this.handleSearch}/>
-
+              <TodoSearch/>
               <TodoList/>
-              <AddTodo onAddTodo={this.handleAddTodo}/>
+              <AddTodo/>
             </div>
           </div>
         </div>
@@ -75,6 +78,8 @@ var TodoApp = React.createClass({
 });
 
 //removed the following within the render and cleaned
+//<TodoSearch onSearch={this.handleSearch}/>
 //<TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+//<AddTodo onAddTodo={this.handleAddTodo}/>
 
 module.exports = TodoApp;

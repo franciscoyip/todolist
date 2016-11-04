@@ -3,17 +3,17 @@ var React = require('react');
 //connect to the Provider pass down by root component
 var {connect} = require('react-redux');
 import Todo from 'Todo';
-//var Todo = require('Todo');
+var TodoAPI = require('TodoAPI');
 
 export var TodoList = React.createClass({
   render: function(){
-    var {todos} = this.props;
+    var {todos, showCompleted, searchText} = this.props;
     var self = this;
     var renderTodos = function(){
       if(todos.length === 0){
         return <p className="container-msg">No Tasks</p>;
       }
-      return todos.map(function(todo){
+      return TodoAPI.filterTodos(todos, showCompleted, searchText).map(function(todo){
         return (
           <Todo key={todo.id} {...todo}/>
         );
@@ -31,6 +31,6 @@ export var TodoList = React.createClass({
 export default connect(
   //state this component need
   (state)=>{
-    return {todos: state.todos};
+    return state;
   }
 )(TodoList);
